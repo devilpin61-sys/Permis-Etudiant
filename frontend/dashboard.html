@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Permis Étudiant+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        background-color: #e5e7eb !important; /* Le joli gris clair de ta topbar */
+      }
+      .logo-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .nav-item.active {
+        background-color: #ebf3ff;
+        color: #1a73e8;
+      }
+
+      /* =======================================================
+         CORRECTIONS RESPONSIVE : FIN DU GROS ZOOM ET DÉBORDEMENT
+         ======================================================= */
+
+      /* 1. Aligne et cadre la topbar mobile pour qu'elle ne bouge pas */
+      .md\:hidden.flex {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      /* 2. Pour les Tablettes (Écrans moyens) : Reste propre sur 2 colonnes */
+      @media screen and (min-width: 641px) and (max-width: 1024px) {
+        .grid.grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 1rem !important;
+        }
+      }
+
+      /* 3. Pour les Téléphones : Réduction drastique des paddings qui écrasent tout */
+      @media screen and (max-width: 640px) {
+        /* CIBLE LE CONTENEUR PRINCIPAL : On détruit le gros padding de force */
+        div.flex-1,
+        main,
+        .p-10,
+        .p-6 {
+          padding-left: 0.75rem !important; /* Petit espace égal à gauche */
+          padding-right: 0.75rem !important; /* Même petit espace égal à droite */
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+          overflow-x: hidden !important; /* Empêche le défilement horizontal bizarre */
+        }
+
+        /* Force la grille à rester bien au centre sans déborder */
+        .grid.grid-cols-2 {
+          grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+          gap: 0.6rem !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* À l'intérieur de CHAQUE carte (Cours suivis, Présences...) */
+        .grid.grid-cols-2 > div {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          padding: 0.6rem 0.75rem !important; /* Moins de hauteur, compact à droite */
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Rapproche le texte de l'icône pour pas que le chiffre sorte du cadre */
+        .grid.grid-cols-2 > div > div:last-child {
+          margin-left: 0.5rem !important;
+        }
+
+        /* Ajustement des textes "Cours suivis", "12 / 30" */
+        .grid.grid-cols-2 p {
+          font-size: 0.75rem !important;
+        }
+        .grid.grid-cols-2 span,
+        .grid.grid-cols-2 div.text-xl,
+        .grid.grid-cols-2 font {
+          font-size: 1.1rem !important; /* Réduit la taille des chiffres pour mobile */
+        }
+
+        /* Titre Bonjour */
+        #accueil-titre {
+          font-size: 1.25rem !important;
+          margin-left: 0.25rem !important;
+        }
+
+        /* Bloc principal de "Cours du jour" */
+        .bg-white.border-gray-200.rounded-xl.p-4 {
+          padding: 0.6rem !important; /* Moins d'espace perdu sur les bords */
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Ligne interne de Cours du jour (L'icône voiture, le titre, le bouton Voir) */
+        .bg-white.border-gray-200.rounded-xl.p-4 > div.flex {
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          gap: 0.4rem !important;
+          padding: 0.4rem !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Zone du texte du cours */
+        .flex-1.min-w-0 {
+          margin-right: 6px !important;
+        }
+
+        .flex-1.min-w-0 p {
+          white-space: normal !important; /* Force le texte à aller à la ligne au lieu de pousser les murs */
+          font-size: 0.75rem !important;
+          line-height: 1.2 !important;
+        }
+
+        /* Bouton "Voir" bloqué pour ne plus sortir de l'écran */
+        .flex-1.min-w-0 + a {
+          padding: 4px 8px !important;
+          font-size: 11px !important;
+          flex-shrink: 0 !important; /* Interdiction de se faire écraser ou de sortir */
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-500 text-gray-800">
+    <!-- TOPBAR MOBILE -->
+    <div
+      class="md:hidden flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-50"
+    >
+      <span class="logo-font font-semibold text-blue-800 text-base"
+        >Permis<span class="text-blue-500">Étudiant+</span></span
+      >
+      <button id="hamburger-btn" class="text-gray-500 text-lg">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- OVERLAY -->
+    <div
+      id="sidebar-overlay"
+      class="hidden fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+    ></div>
+
+    <div class="flex min-h-screen">
+      <!-- SIDEBAR -->
+      <aside
+        id="sidebar"
+        class="fixed top-0 left-0 h-full w-60 bg-white border-r border-gray-100 flex flex-col justify-between z-50 py-5 px-3 -translate-x-full md:translate-x-0 transition-transform duration-200"
+      >
+        <div>
+          <div class="mb-6 px-2 hidden md:block">
+            <span class="logo-font font-semibold text-blue-800 text-base"
+              >Permis<span class="text-blue-500">Étudiant+</span></span
+            >
+          </div>
+          <nav class="flex flex-col gap-0.5">
+            <a
+              href="#"
+              class="nav-item active flex items-center gap-3 px-3 py-2 rounded-lg text-blue-600 text-xs font-medium hover:bg-gray-500 transition-all"
+              data-page="accueil"
+            >
+              <i class="fas fa-house w-4 text-center text-sm"></i>
+              <span>Accueil</span>
+            </a>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-500 hover:text-blue-600 transition-all"
+              data-page="cours"
+            >
+              <i class="fas fa-book-open w-4 text-center text-sm"></i>
+              <span>Mes Cours</span>
+            </a>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-500 hover:text-blue-600 transition-all"
+              data-page="planning"
+            >
+              <i class="fas fa-calendar-days w-4 text-center text-sm"></i>
+              <span>Mon Planning</span>
+            </a>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-500 hover:text-blue-600 transition-all"
+              data-page="progression"
+            >
+              <i class="fas fa-chart-line w-4 text-center text-sm"></i>
+              <span>Ma Progression</span>
+            </a>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-500 hover:text-blue-600 transition-all"
+              data-page="quiz"
+            >
+              <i class="fas fa-circle-question w-4 text-center text-sm"></i>
+              <span>Quiz</span>
+            </a>
+          </nav>
+        </div>
+        <div class="border-t border-gray-100 pt-3 flex flex-col gap-0.5">
+          <a
+            href="#"
+            class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-500 hover:text-blue-600 transition-all"
+            data-page="profil"
+          >
+            <div
+              id="sidebar-avatar"
+              class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold logo-font flex-shrink-0"
+            >
+              OB
+            </div>
+            <span>Mon Profil</span>
+          </a>
+          <a
+            href="#"
+            class="deconnexion flex items-center gap-3 px-3 py-2 rounded-lg text-red-400 text-xs font-medium hover:bg-red-50 transition-all"
+          >
+            <i class="fas fa-right-from-bracket w-4 text-center text-sm"></i>
+            <span>Se déconnecter</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 md:ml-60 p-4 md:p-6">
+        <!-- PAGE ACCUEIL -->
+        <div class="page active" id="page-accueil">
+          <div class="mb-5">
+            <h1
+              id="accueil-titre"
+              class="logo-font text-lg font-semibold text-gray-900"
+            >
+              Bonjour
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Voici un résumé de votre progression aujourd'hui
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-book-open text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Cours suivis</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">
+                  12 / 30
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3"
+            >
+              <div
+                class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center text-green-500 flex-shrink-0"
+              >
+                <i class="fas fa-calendar-check text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Présences</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">
+                  10 / 12
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3"
+            >
+              <div
+                class="w-9 h-9 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500 flex-shrink-0"
+              >
+                <i class="fas fa-circle-question text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Quiz complétés</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">
+                  5 / 10
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3"
+            >
+              <div
+                class="w-9 h-9 bg-purple-50 rounded-lg flex items-center justify-center text-purple-500 flex-shrink-0"
+              >
+                <i class="fas fa-chart-line text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Progression</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">40%</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <h2 class="logo-font font-semibold text-gray-800 text-sm mb-3">
+              Cours du jour
+            </h2>
+            <div
+              class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-300 transition-all mb-2"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-car text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-gray-900 truncate">
+                  Code de la route — Chapitre 3
+                </p>
+                <p class="text-xs text-gray-400">
+                  Les panneaux de signalisation
+                </p>
+                <span
+                  class="text-xs bg-blue-50 text-blue-500 px-2 py-0.5 rounded-full mt-1 inline-block"
+                  >Théorique</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Voir</a
+              >
+            </div>
+            <div
+              class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-green-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center text-green-500 flex-shrink-0"
+              >
+                <i class="fas fa-road text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-gray-900 truncate">
+                  Conduite — Séance 5
+                </p>
+                <p class="text-xs text-gray-400">Manœuvres en ville</p>
+                <span
+                  class="text-xs bg-green-50 text-green-500 px-2 py-0.5 rounded-full mt-1 inline-block"
+                  >Pratique</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Voir</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE MES COURS -->
+        <div class="page" id="page-cours">
+          <div class="mb-5">
+            <h1 class="logo-font text-lg font-semibold text-gray-900">
+              Mes Cours
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Tous vos cours théoriques et pratiques
+            </p>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col gap-2"
+          >
+            <div
+              class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-car text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-gray-900">
+                  Code de la route — Chapitre 1
+                </p>
+                <p class="text-xs text-gray-400">
+                  Introduction au code de la route
+                </p>
+                <span
+                  class="text-xs bg-blue-50 text-blue-500 px-2 py-0.5 rounded-full mt-1 inline-block"
+                  >Théorique</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Voir</a
+              >
+            </div>
+            <div
+              class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-car text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-gray-900">
+                  Code de la route — Chapitre 2
+                </p>
+                <p class="text-xs text-gray-400">Les règles de priorité</p>
+                <span
+                  class="text-xs bg-blue-50 text-blue-500 px-2 py-0.5 rounded-full mt-1 inline-block"
+                  >Théorique</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Voir</a
+              >
+            </div>
+            <div
+              class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-green-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center text-green-500 flex-shrink-0"
+              >
+                <i class="fas fa-road text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-gray-900">
+                  Conduite — Séance 1
+                </p>
+                <p class="text-xs text-gray-400">Prise en main du véhicule</p>
+                <span
+                  class="text-xs bg-green-50 text-green-500 px-2 py-0.5 rounded-full mt-1 inline-block"
+                  >Pratique</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Voir</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE PLANNING -->
+        <div class="page" id="page-planning">
+          <div class="mb-5">
+            <h1 class="logo-font text-lg font-semibold text-gray-900">
+              Mon Planning
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Votre calendrier de formation
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="bg-white border border-gray-200 rounded-xl p-3">
+              <h3 class="logo-font font-medium text-gray-800 text-xs mb-2">
+                Lundi
+              </h3>
+              <div class="bg-blue-50 rounded-lg p-2">
+                <p class="text-xs text-blue-500 font-medium">08h00</p>
+                <p class="text-xs text-gray-600">Code de la route</p>
+              </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-3">
+              <h3 class="logo-font font-medium text-gray-800 text-xs mb-2">
+                Mardi
+              </h3>
+              <div class="bg-green-50 rounded-lg p-2">
+                <p class="text-xs text-green-500 font-medium">10h00</p>
+                <p class="text-xs text-gray-600">Conduite pratique</p>
+              </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-3">
+              <h3 class="logo-font font-medium text-gray-800 text-xs mb-2">
+                Mercredi
+              </h3>
+              <div class="bg-blue-50 rounded-lg p-2">
+                <p class="text-xs text-blue-500 font-medium">08h00</p>
+                <p class="text-xs text-gray-600">Code de la route</p>
+              </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-3">
+              <h3 class="logo-font font-medium text-gray-800 text-xs mb-2">
+                Jeudi
+              </h3>
+              <div class="bg-green-50 rounded-lg p-2">
+                <p class="text-xs text-green-500 font-medium">10h00</p>
+                <p class="text-xs text-gray-600">Conduite pratique</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE PROGRESSION -->
+        <div class="page" id="page-progression">
+          <div class="mb-5">
+            <h1 class="logo-font text-lg font-semibold text-gray-900">
+              Ma Progression
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Suivez votre avancement dans la formation
+            </p>
+          </div>
+          <div class="flex flex-col gap-3 max-w-lg">
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+              <div
+                class="flex justify-between text-xs font-medium text-gray-700 mb-2"
+              >
+                <span>Formation théorique</span><span>60%</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-1.5">
+                <div
+                  class="bg-blue-500 h-1.5 rounded-full"
+                  style="width: 60%"
+                ></div>
+              </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+              <div
+                class="flex justify-between text-xs font-medium text-gray-700 mb-2"
+              >
+                <span>Formation pratique</span><span>30%</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-1.5">
+                <div
+                  class="bg-green-500 h-1.5 rounded-full"
+                  style="width: 30%"
+                ></div>
+              </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-xl p-4">
+              <div
+                class="flex justify-between text-xs font-medium text-gray-700 mb-2"
+              >
+                <span>Quiz complétés</span><span>50%</span>
+              </div>
+              <div class="bg-gray-100 rounded-full h-1.5">
+                <div
+                  class="bg-orange-500 h-1.5 rounded-full"
+                  style="width: 50%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE QUIZ -->
+        <div class="page" id="page-quiz">
+          <div class="mb-5">
+            <h1 class="logo-font text-lg font-semibold text-gray-900">Quiz</h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Testez vos connaissances du code de la route
+            </p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3 hover:border-blue-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-circle-question text-xs"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-xs font-medium text-gray-900">
+                  Quiz — Chapitre 1
+                </p>
+                <p class="text-xs text-gray-400">
+                  10 questions sur l'introduction au code
+                </p>
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Commencer</a
+              >
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3 hover:border-blue-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-circle-question text-xs"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-xs font-medium text-gray-900">
+                  Quiz — Chapitre 2
+                </p>
+                <p class="text-xs text-gray-400">
+                  10 questions sur les règles de priorité
+                </p>
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Commencer</a
+              >
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-3 hover:border-blue-300 transition-all"
+            >
+              <div
+                class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-circle-question text-xs"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-xs font-medium text-gray-900">
+                  Quiz — Chapitre 3
+                </p>
+                <p class="text-xs text-gray-400">
+                  10 questions sur les panneaux
+                </p>
+              </div>
+              <a
+                href="#"
+                class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0"
+                >Commencer</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE PROFIL -->
+        <div class="page" id="page-profil">
+          <div class="mb-5">
+            <h1 class="logo-font text-lg font-semibold text-gray-900">
+              Mon Profil
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Vos informations personnelles
+            </p>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-xl p-5 max-w-sm flex flex-col items-center gap-4"
+          >
+            <div
+              id="profil-avatar"
+              class="w-14 h-14 bg-blue-500 text-white rounded-full flex items-center justify-center logo-font font-semibold text-xl"
+            >
+              OB
+            </div>
+            <div class="w-full flex flex-col gap-3">
+              <div class="border-b border-gray-100 pb-3">
+                <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+                  Nom complet
+                </p>
+                <p id="profil-nom" class="text-xs font-medium text-gray-800">
+                  Chargement...
+                </p>
+              </div>
+              <div class="border-b border-gray-100 pb-3">
+                <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+                  Email
+                </p>
+                <p id="profil-email" class="text-xs font-medium text-gray-800">
+                  Chargement...
+                </p>
+              </div>
+              <div class="border-b border-gray-100 pb-3">
+                <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+                  Téléphone
+                </p>
+                <p
+                  id="profil-telephone"
+                  class="text-xs font-medium text-gray-800"
+                >
+                  Chargement...
+                </p>
+              </div>
+              <div class="border-b border-gray-100 pb-3">
+                <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+                  Centre
+                </p>
+                <p id="profil-centre" class="text-xs font-medium text-gray-800">
+                  Chargement...
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">
+                  Option de cours
+                </p>
+                <p id="profil-option" class="text-xs font-medium text-gray-800">
+                  Chargement...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

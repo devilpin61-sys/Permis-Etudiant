@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace Auto-École | Permis Étudiant+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="autoecole-container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="sidebar-logo">
+            <span class="logo-text"
+              >Permis<span class="logo-accent">Étudiant+</span></span
+            >
+            <span class="autoecole-badge">Auto-École</span>
+          </div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+              <i class="fas fa-gauge"></i>
+              <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="cours">
+              <i class="fas fa-book-open"></i>
+              <span>Mes Cours</span>
+            </a>
+            <a href="#" class="nav-item" data-page="apprenants">
+              <i class="fas fa-users"></i>
+              <span>Mes Apprenants</span>
+            </a>
+            <a href="#" class="nav-item" data-page="planning">
+              <i class="fas fa-calendar-days"></i>
+              <span>Planning</span>
+            </a>
+            <a href="#" class="nav-item" data-page="presences">
+              <i class="fas fa-clipboard-check"></i>
+              <span>Présences</span>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-bottom">
+          <a href="#" class="nav-item" data-page="profil">
+            <div class="user-avatar">ES</div>
+            <span>Eloi Service Plus</span>
+          </a>
+          <a href="login.html" class="nav-item deconnexion">
+            <i class="fas fa-right-from-bracket"></i>
+            <span>Se déconnecter</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- CONTENU PRINCIPAL -->
+      <main class="main-content">
+        <!-- PAGE DASHBOARD -->
+        <div class="page active" id="page-dashboard">
+          <div class="page-header">
+            <h1>Tableau de bord</h1>
+            <p>Bienvenue, Eloi Service Plus</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <div class="stat-info">
+                <h3>Mes apprenants</h3>
+                <span>45</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Cours publiés</h3>
+                <span>12</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Présences aujourd'hui</h3>
+                <span>38 / 45</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Taux de réussite</h3>
+                <span>87%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COURS DU JOUR -->
+          <div class="section-card">
+            <h2>Cours du jour</h2>
+            <div class="cours-card-ae">
+              <div class="cours-icon-ae"><i class="fas fa-car"></i></div>
+              <div class="cours-info-ae">
+                <h3>Code de la route — Chapitre 3</h3>
+                <p>Les panneaux de signalisation</p>
+                <span class="badge badge-blue">Théorique</span>
+              </div>
+              <div class="cours-actions">
+                <button class="btn-action-ae btn-modifier">
+                  <i class="fas fa-pen"></i> Modifier
+                </button>
+              </div>
+            </div>
+            <div class="cours-card-ae">
+              <div class="cours-icon-ae pratique">
+                <i class="fas fa-road"></i>
+              </div>
+              <div class="cours-info-ae">
+                <h3>Conduite — Séance 5</h3>
+                <p>Manœuvres en ville</p>
+                <span class="badge badge-green">Pratique</span>
+              </div>
+              <div class="cours-actions">
+                <button class="btn-action-ae btn-modifier">
+                  <i class="fas fa-pen"></i> Modifier
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE MES COURS -->
+        <div class="page" id="page-cours">
+          <div class="page-header">
+            <h1>Mes Cours</h1>
+            <p>Gérez et publiez vos cours</p>
+          </div>
+
+          <!-- AJOUTER UN COURS -->
+          <div class="section-card">
+            <h2>Ajouter un cours</h2>
+            <div class="cours-form">
+              <div class="form-group">
+                <label>Titre du cours</label>
+                <input
+                  type="text"
+                  class="admin-input"
+                  placeholder="Ex: Code de la route — Chapitre 4"
+                />
+              </div>
+              <div class="form-group">
+                <label>Type de cours</label>
+                <select class="admin-input">
+                  <option value="theorique">Théorique</option>
+                  <option value="pratique">Pratique</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Date du cours</label>
+                <input type="date" class="admin-input" />
+              </div>
+              <div class="form-group">
+                <label>Contenu du cours</label>
+                <textarea
+                  class="admin-input"
+                  rows="6"
+                  placeholder="Entrez le contenu du cours ici..."
+                ></textarea>
+              </div>
+              <button class="btn-primary-ae">
+                <i class="fas fa-plus"></i> Publier le cours
+              </button>
+            </div>
+          </div>
+
+          <!-- LISTE DES COURS -->
+          <div class="section-card">
+            <h2>Cours publiés</h2>
+            <div class="cours-liste-ae">
+              <div class="cours-card-ae">
+                <div class="cours-icon-ae"><i class="fas fa-car"></i></div>
+                <div class="cours-info-ae">
+                  <h3>Code de la route — Chapitre 1</h3>
+                  <p>Introduction au code de la route</p>
+                  <span class="badge badge-blue">Théorique</span>
+                </div>
+                <div class="cours-actions">
+                  <button class="btn-action-ae btn-modifier">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <button class="btn-action-ae btn-supprimer-ae">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="cours-card-ae">
+                <div class="cours-icon-ae pratique">
+                  <i class="fas fa-road"></i>
+                </div>
+                <div class="cours-info-ae">
+                  <h3>Conduite — Séance 1</h3>
+                  <p>Prise en main du véhicule</p>
+                  <span class="badge badge-green">Pratique</span>
+                </div>
+                <div class="cours-actions">
+                  <button class="btn-action-ae btn-modifier">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <button class="btn-action-ae btn-supprimer-ae">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE MES APPRENANTS -->
+        <div class="page" id="page-apprenants">
+          <div class="page-header">
+            <h1>Mes Apprenants</h1>
+            <p>Liste des apprenants de votre auto-école</p>
+          </div>
+          <div class="section-card">
+            <input
+              type="text"
+              placeholder="🔍 Rechercher un apprenant..."
+              class="search-input"
+            />
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nom complet</th>
+                  <th>Téléphone</th>
+                  <th>Option</th>
+                  <th>Progression</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bleossi De-vilpin</td>
+                  <td>+229 62 03 18 92</td>
+                  <td>Semaine matin</td>
+                  <td>
+                    <div class="mini-bar">
+                      <div class="mini-fill" style="width: 40%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge badge-blue">En cours</span></td>
+                </tr>
+                <tr>
+                  <td>Koffi Mensah</td>
+                  <td>+229 95 24 26 42</td>
+                  <td>Week-end</td>
+                  <td>
+                    <div class="mini-bar">
+                      <div class="mini-fill" style="width: 75%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge badge-green">Avancé</span></td>
+                </tr>
+                <tr>
+                  <td>Aïcha Soulé</td>
+                  <td>+229 67 58 02 93</td>
+                  <td>Semaine soir</td>
+                  <td>
+                    <div class="mini-bar">
+                      <div class="mini-fill" style="width: 100%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge badge-orange">Examen</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PAGE PLANNING -->
+        <div class="page" id="page-planning">
+          <div class="page-header">
+            <h1>Planning</h1>
+            <p>Gérez le planning de vos cours</p>
+          </div>
+          <div class="planning-grid">
+            <div class="planning-jour">
+              <h3>Lundi</h3>
+              <div class="planning-cours theorique">
+                <span class="planning-heure">08h00</span>
+                <span class="planning-titre">Code de la route</span>
+              </div>
+            </div>
+            <div class="planning-jour">
+              <h3>Mardi</h3>
+              <div class="planning-cours pratique">
+                <span class="planning-heure">10h00</span>
+                <span class="planning-titre">Conduite pratique</span>
+              </div>
+            </div>
+            <div class="planning-jour">
+              <h3>Mercredi</h3>
+              <div class="planning-cours theorique">
+                <span class="planning-heure">08h00</span>
+                <span class="planning-titre">Code de la route</span>
+              </div>
+            </div>
+            <div class="planning-jour">
+              <h3>Jeudi</h3>
+              <div class="planning-cours pratique">
+                <span class="planning-heure">10h00</span>
+                <span class="planning-titre">Conduite pratique</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE PRESENCES -->
+        <div class="page" id="page-presences">
+          <div class="page-header">
+            <h1>Présences</h1>
+            <p>Marquez les présences du jour</p>
+          </div>
+          <div class="section-card">
+            <div class="presence-header">
+              <h2>Séance du jour</h2>
+              <input type="date" class="admin-input" style="width: auto" />
+            </div>
+            <div class="presence-liste">
+              <div class="presence-item">
+                <div class="presence-nom">
+                  <div class="user-avatar small">BD</div>
+                  <span>Bleossi De-vilpin</span>
+                </div>
+                <div class="presence-toggle">
+                  <button class="btn-present active" id="present-1">
+                    <i class="fas fa-check"></i> Présent
+                  </button>
+                  <button class="btn-absent" id="absent-1">
+                    <i class="fas fa-xmark"></i> Absent
+                  </button>
+                </div>
+              </div>
+              <div class="presence-item">
+                <div class="presence-nom">
+                  <div class="user-avatar small">KM</div>
+                  <span>Koffi Mensah</span>
+                </div>
+                <div class="presence-toggle">
+                  <button class="btn-present" id="present-2">
+                    <i class="fas fa-check"></i> Présent
+                  </button>
+                  <button class="btn-absent active" id="absent-2">
+                    <i class="fas fa-xmark"></i> Absent
+                  </button>
+                </div>
+              </div>
+              <div class="presence-item">
+                <div class="presence-nom">
+                  <div class="user-avatar small">AS</div>
+                  <span>Aïcha Soulé</span>
+                </div>
+                <div class="presence-toggle">
+                  <button class="btn-present active" id="present-3">
+                    <i class="fas fa-check"></i> Présent
+                  </button>
+                  <button class="btn-absent" id="absent-3">
+                    <i class="fas fa-xmark"></i> Absent
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="btn-primary-ae" style="margin-top: 20px">
+              <i class="fas fa-floppy-disk"></i> Enregistrer les présences
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/autoecole.js"></script>
+  </body>
+</html>

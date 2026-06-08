@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Obtenez votre permis de conduire à 61.000 FCFA — formation, dossiers et examen inclus. Projet Permis Étudiant+ au Bénin."
+    />
+    <title>Permis Étudiant+ | Un Permis, Une Opportunité d'Emploi</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-logo">
+          <span class="logo-text"
+            >Permis<span class="logo-accent">Étudiant+</span></span
+          >
+        </div>
+        <ul class="navbar-links">
+          <li><a href="#pourquoi">Pourquoi ?</a></li>
+          <li><a href="#prix">Prix</a></li>
+          <li><a href="#cours">Cours</a></li>
+          <li><a href="#centres">Centres</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#inscription" class="btn-nav">S'inscrire</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-titre">Un Permis, Une Opportunité d'Emploi</h1>
+        <p class="hero-sous-titre">
+          Obtenez votre permis de conduire à seulement
+          <strong>61.000 FCFA</strong>
+          — formation, dossiers et examen inclus.
+        </p>
+        <a href="#inscription" class="btn-primary">S'inscrire Maintenant</a>
+        <p class="hero-tranche">
+          Paiement en 3 tranches disponible — Commencez avec seulement
+          <strong>15.000 FCFA</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- POURQUOI LE PERMIS -->
+    <section class="pourquoi" id="pourquoi">
+      <div class="container">
+        <h2 class="section-titre">Pourquoi obtenir votre permis ?</h2>
+        <p class="section-sous-titre">
+          Le permis de conduire est bien plus qu'un simple document
+        </p>
+        <div class="pourquoi-cards">
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+            <h3>Emploi</h3>
+            <p>
+              Demandé dans presque toutes les offres d'emploi au Bénin et
+              ailleurs.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-plane"></i></div>
+            <h3>Visa</h3>
+            <p>
+              Indispensable pour la quête de visa et les voyages à l'étranger.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-car"></i></div>
+            <h3>Liberté</h3>
+            <p>
+              Conduisez en toute autonomie et gagnez en indépendance au
+              quotidien.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-star"></i></div>
+            <h3>Opportunités</h3>
+            <p>
+              Un atout qui vaut plus que certains diplômes académiques
+              aujourd'hui.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPTE A REBOURS -->
+    <section class="countdown-section" id="countdown">
+      <div class="container">
+        <div
+          class="countdown-content"
+          id="countdown-ouvert"
+          style="display: none"
+        >
+          <div class="countdown-badge ouvert">
+            <i class="fas fa-circle-check"></i> Inscriptions Ouvertes
+          </div>
+          <h2>Inscrivez-vous maintenant !</h2>
+          <p>
+            Les inscriptions ferment le
+            <strong id="date-cloture-affichage"></strong>
+          </p>
+          <a href="#inscription" class="btn-primary">S'inscrire Maintenant</a>
+        </div>
+        <div
+          class="countdown-content"
+          id="countdown-ferme"
+          style="display: none"
+        >
+          <div class="countdown-badge ferme">
+            <i class="fas fa-lock"></i> Inscriptions Fermées
+          </div>
+          <h2>Prochaine vague bientôt</h2>
+          <p>
+            Les inscriptions ouvriront le
+            <strong id="date-ouverture-affichage"></strong>
+          </p>
+          <div class="countdown-timer">
+            <div class="countdown-item">
+              <span id="countdown-jours">00</span>
+              <label>Jours</label>
+            </div>
+            <div class="countdown-separateur">:</div>
+            <div class="countdown-item">
+              <span id="countdown-heures">00</span>
+              <label>Heures</label>
+            </div>
+            <div class="countdown-separateur">:</div>
+            <div class="countdown-item">
+              <span id="countdown-minutes">00</span>
+              <label>Minutes</label>
+            </div>
+            <div class="countdown-separateur">:</div>
+            <div class="countdown-item">
+              <span id="countdown-secondes">00</span>
+              <label>Secondes</label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="countdown-content"
+          id="countdown-bientot"
+          style="display: none"
+        >
+          <div class="countdown-badge bientot">
+            <i class="fas fa-clock"></i> Prochaine vague
+          </div>
+          <h2>Restez connectés !</h2>
+          <p>Les dates de la prochaine vague seront annoncées très bientôt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIX ET TRANCHES -->
+    <section class="prix" id="prix">
+      <div class="container">
+        <h2 class="section-titre">Prix et Paiement</h2>
+        <p class="section-sous-titre">
+          Une formation complète à un coût accessible pour tous
+        </p>
+        <div class="prix-total">
+          <span class="prix-ancien">110.000 — 150.000 FCFA</span>
+          <span class="prix-nouveau">61.000 FCFA</span>
+          <span class="prix-detail">Formation + Dossiers + Examen inclus</span>
+        </div>
+        <div class="tranches">
+          <div class="tranche">
+            <div class="tranche-numero">1</div>
+            <div class="tranche-info">
+              <h3>À l'inscription</h3>
+              <span class="tranche-montant">15.000 FCFA</span>
+            </div>
+          </div>
+          <div class="tranche-fleche"><i class="fas fa-arrow-right"></i></div>
+          <div class="tranche">
+            <div class="tranche-numero">2</div>
+            <div class="tranche-info">
+              <h3>Fin formation théorique</h3>
+              <span class="tranche-montant">20.000 FCFA</span>
+            </div>
+          </div>
+          <div class="tranche-fleche"><i class="fas fa-arrow-right"></i></div>
+          <div class="tranche">
+            <div class="tranche-numero">3</div>
+            <div class="tranche-info">
+              <h3>Fin formation pratique</h3>
+              <span class="tranche-montant">26.000 FCFA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIONS DE COURS -->
+    <section class="cours" id="cours">
+      <div class="container">
+        <h2 class="section-titre">Options de Cours</h2>
+        <p class="section-sous-titre">
+          Choisissez le créneau qui vous convient
+        </p>
+        <div class="cours-cards">
+          <div class="cours-card">
+            <div class="cours-icon"><i class="fas fa-calendar-week"></i></div>
+            <h3>Cours de Semaine</h3>
+            <p>Du lundi au jeudi</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Cours du matin</li>
+              <li><i class="fas fa-check"></i> Cours de l'après-midi</li>
+              <li><i class="fas fa-check"></i> Cours du soir</li>
+            </ul>
+          </div>
+          <div class="cours-card">
+            <div class="cours-icon"><i class="fas fa-calendar-days"></i></div>
+            <h3>Cours de Week-end</h3>
+            <p>Samedi et Dimanche</p>
+            <ul>
+              <li><i class="fas fa-check"></i> De 8h à 12h</li>
+              <li><i class="fas fa-check"></i> Pause de 15 minutes</li>
+              <li><i class="fas fa-check"></i> Idéal pour les actifs</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cours-duree">
+          <i class="fas fa-clock"></i> Durée totale de la formation :
+          <strong>3 mois maximum</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- PARTENAIRES -->
+    <section class="partenaires" id="partenaires">
+      <div class="container">
+        <h2 class="section-titre">Nos Auto-Écoles Partenaires</h2>
+        <p class="section-sous-titre">
+          Des auto-écoles de confiance sélectionnées pour vous
+        </p>
+        <div class="partenaires-grid">
+          <div class="partenaire-card">
+            <i class="fas fa-car-side"></i>
+            <h3>Eloi Service Plus</h3>
+          </div>
+          <div class="partenaire-card">
+            <i class="fas fa-car-side"></i>
+            <h3>Lumière Conduite</h3>
+          </div>
+          <div class="partenaire-card">
+            <i class="fas fa-car-side"></i>
+            <h3>Auto-École La Capitale</h3>
+          </div>
+          <div class="partenaire-card">
+            <i class="fas fa-car-side"></i>
+            <h3>Auto École Le Succès</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENTRES -->
+    <section class="centres" id="centres">
+      <div class="container">
+        <h2 class="section-titre">Nos Centres</h2>
+        <p class="section-sous-titre">
+          Disponible dans plusieurs villes du Bénin
+        </p>
+        <div class="centres-grid">
+          <div class="centre-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Calavi / UAC</h3>
+            <p><i class="fas fa-phone"></i> +229 62 03 18 92</p>
+            <p><i class="fas fa-phone"></i> +229 95 24 26 42</p>
+          </div>
+          <div class="centre-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Porto-Novo / Koutongbé</h3>
+            <p><i class="fas fa-phone"></i> +229 67 58 02 93</p>
+            <p><i class="fas fa-phone"></i> +229 62 03 18 92</p>
+          </div>
+          <div class="centre-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Bohicon</h3>
+            <p><i class="fas fa-phone"></i> +229 62 03 18 92</p>
+          </div>
+          <div class="centre-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Lokossa</h3>
+            <p><i class="fas fa-phone"></i> +229 62 03 18 92</p>
+            <p><i class="fas fa-phone"></i> +229 91 32 65 44</p>
+          </div>
+          <div class="centre-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Parakou</h3>
+            <p><i class="fas fa-phone"></i> +229 62 03 18 92</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 class="section-titre">Questions Fréquentes</h2>
+        <p class="section-sous-titre">Tout ce que vous devez savoir</p>
+        <div class="faq-liste">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Est-ce que les 61.000 FCFA couvrent tout ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>
+                Oui, l'inscription, la formation, les dossiers et l'examen sont
+                entièrement inclus dans les 61.000 FCFA.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Je ne suis pas étudiant, puis-je m'inscrire ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>
+                Oui, le programme est ouvert à tous ceux qui savent lire et
+                écrire, étudiants ou non.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Combien de temps dure la formation ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>La formation dure 3 mois au maximum.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Est-ce que je peux payer en une seule fois ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>
+                Oui, vous pouvez payer en une seule fois. Le paiement en 3
+                tranches est aussi disponible pour faciliter l'accès.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span
+                >Quelle est la différence entre les cours de semaine et de
+                week-end ?</span
+              >
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>
+                Les cours de semaine se déroulent du lundi au jeudi avec 3
+                créneaux au choix (matin, après-midi, soir). Les cours de
+                week-end c'est samedi et dimanche de 8h à 12h.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Comment s'inscrire ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-reponse">
+              <p>
+                Via le formulaire sur ce site ou directement sur WhatsApp au
+                +229 62 03 18 92.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULAIRE -->
+    <section class="inscription" id="inscription">
+      <div class="container">
+        <h2 class="section-titre">S'inscrire Maintenant</h2>
+        <p class="section-sous-titre">
+          Remplissez le formulaire, nous vous contactons rapidement
+        </p>
+        <div class="form-container">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Votre nom" />
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Votre prénom" />
+          </div>
+          <div class="form-group">
+            <label for="telephone">Numéro de téléphone</label>
+            <input
+              type="tel"
+              id="telephone"
+              placeholder="+229 01 00 00 00 00"
+            />
+            <div class="form-group" style="margin-top: 20px">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="votre@email.com" />
+            </div>
+            <div class="form-group" style="margin-top: 20px">
+              <label for="motDePasse">Mot de passe</label>
+              <input
+                type="password"
+                id="motDePasse"
+                placeholder="Choisissez un mot de passe"
+              />
+            </div>
+
+            <div class="form-group" style="margin-top: 20px">
+              <label for="confirmerMotDePasse">Confirmer le mot de passe</label>
+              <input
+                type="password"
+                id="confirmerMotDePasse"
+                placeholder="Confirmez votre mot de passe"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="centre">Centre choisi</label>
+            <select id="centre">
+              <option value="">Choisissez votre centre</option>
+              <option value="calavi">Calavi / UAC</option>
+              <option value="porto-novo">Porto-Novo / Koutongbé</option>
+              <option value="bohicon">Bohicon</option>
+              <option value="lokossa">Lokossa</option>
+              <option value="parakou">Parakou</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="option">Option de cours</label>
+            <select id="option">
+              <option value="">Choisissez votre option</option>
+              <option value="semaine-matin">Semaine — Matin</option>
+              <option value="semaine-aprem">Semaine — Après-midi</option>
+              <option value="semaine-soir">Semaine — Soir</option>
+              <option value="weekend">Week-end (Samedi–Dimanche)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="statut">Vous êtes ?</label>
+            <select id="statut">
+              <option value="">Choisissez votre statut</option>
+              <option value="etudiant">Étudiant</option>
+              <option value="non-etudiant">Je suis pas étudiant</option>
+            </select>
+          </div>
+          <button class="btn-primary btn-inscrire" id="btn-inscrire">
+            <i class="fab fa-whatsapp"></i> S'inscrire via WhatsApp
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Permis Étudiant+</h3>
+            <p>
+              Un projet de l'ONG La Voix des Étudiants pour rendre le permis de
+              conduire accessible à tous.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h3>Liens Rapides</h3>
+            <ul>
+              <li><a href="#pourquoi">Pourquoi ?</a></li>
+              <li><a href="#prix">Prix</a></li>
+              <li><a href="#cours">Cours</a></li>
+              <li><a href="#centres">Centres</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <p><i class="fab fa-whatsapp"></i> +229 01 62 03 18 92</p>
+            <p><i class="fas fa-user"></i> Habib AHANDESSI (CapiRevo)</p>
+            <p><i class="fas fa-building"></i> ONG La Voix des Étudiants</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Site développé par <strong>BLEOSSI De-vilpin</strong></p>
+          <p><i class="fab fa-whatsapp"></i> +229 01 94 98 16 87</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

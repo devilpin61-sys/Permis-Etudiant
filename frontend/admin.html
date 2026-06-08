@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Admin | Permis Étudiant+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- SIDEBAR ADMIN -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="sidebar-logo">
+            <span class="logo-text"
+              >Permis<span class="logo-accent">Étudiant+</span></span
+            >
+            <span class="admin-badge">Admin</span>
+          </div>
+          <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+              <i class="fas fa-gauge"></i>
+              <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="inscrits">
+              <i class="fas fa-users"></i>
+              <span>Inscrits</span>
+            </a>
+            <a href="#" class="nav-item" data-page="vagues">
+              <i class="fas fa-calendar-plus"></i>
+              <span>Vagues d'inscription</span>
+            </a>
+
+            <a href="#" class="nav-item" data-page="centres">
+              <i class="fas fa-location-dot"></i>
+              <span>Centres</span>
+            </a>
+            <a href="#" class="nav-item" data-page="paiements">
+              <i class="fas fa-money-bill-wave"></i>
+              <span>Paiements</span>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-bottom">
+          <a href="#" class="nav-item">
+            <div class="user-avatar">HA</div>
+            <span>Habib AHANDESSI</span>
+          </a>
+          <a href="login.html" class="nav-item deconnexion">
+            <i class="fas fa-right-from-bracket"></i>
+            <span>Se déconnecter</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- CONTENU PRINCIPAL -->
+      <main class="main-content">
+        <!-- PAGE DASHBOARD -->
+        <div class="page active" id="page-dashboard">
+          <div class="page-header">
+            <h1>Tableau de bord</h1>
+            <p>Vue générale du projet Permis Étudiant+</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <div class="stat-info">
+                <h3>Total inscrits</h3>
+                <span>247</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-circle-check"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Paiements reçus</h3>
+                <span>189</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+              <div class="stat-info">
+                <h3>En attente</h3>
+                <span>58</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Diplômés</h3>
+                <span>124</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- INSCRITS PAR CENTRE -->
+          <div class="section-card">
+            <h2>Inscrits par centre</h2>
+            <div class="centres-stats">
+              <div class="centre-stat">
+                <div class="centre-stat-label">
+                  <span>Calavi / UAC</span>
+                  <span>98</span>
+                </div>
+                <div class="progression-bar">
+                  <div class="progression-fill" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="centre-stat">
+                <div class="centre-stat-label">
+                  <span>Porto-Novo</span>
+                  <span>65</span>
+                </div>
+                <div class="progression-bar">
+                  <div class="progression-fill" style="width: 55%"></div>
+                </div>
+              </div>
+              <div class="centre-stat">
+                <div class="centre-stat-label">
+                  <span>Bohicon</span>
+                  <span>42</span>
+                </div>
+                <div class="progression-bar">
+                  <div class="progression-fill" style="width: 35%"></div>
+                </div>
+              </div>
+              <div class="centre-stat">
+                <div class="centre-stat-label">
+                  <span>Lokossa</span>
+                  <span>28</span>
+                </div>
+                <div class="progression-bar">
+                  <div class="progression-fill" style="width: 22%"></div>
+                </div>
+              </div>
+              <div class="centre-stat">
+                <div class="centre-stat-label">
+                  <span>Parakou</span>
+                  <span>14</span>
+                </div>
+                <div class="progression-bar">
+                  <div class="progression-fill" style="width: 12%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE INSCRITS -->
+        <div class="page" id="page-inscrits">
+          <div class="page-header">
+            <h1>Inscrits</h1>
+            <p>Liste de tous les apprenants inscrits</p>
+          </div>
+          <div class="section-card">
+            <div class="table-header">
+              <input
+                type="text"
+                placeholder="🔍 Rechercher un inscrit..."
+                class="search-input"
+              />
+              <select class="filter-select">
+                <option value="">Tous les centres</option>
+                <option value="calavi">Calavi / UAC</option>
+                <option value="porto-novo">Porto-Novo</option>
+                <option value="bohicon">Bohicon</option>
+                <option value="lokossa">Lokossa</option>
+                <option value="parakou">Parakou</option>
+              </select>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nom complet</th>
+                  <th>Centre</th>
+                  <th>Option</th>
+                  <th>Statut paiement</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bleossi De-vilpin</td>
+                  <td>Calavi / UAC</td>
+                  <td>Semaine matin</td>
+                  <td>
+                    <span class="badge badge-green">Tranche 1 payée</span>
+                  </td>
+                  <td>
+                    <button class="btn-action btn-voir">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-action btn-supprimer">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Koffi Mensah</td>
+                  <td>Porto-Novo</td>
+                  <td>Week-end</td>
+                  <td><span class="badge badge-orange">En attente</span></td>
+                  <td>
+                    <button class="btn-action btn-voir">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-action btn-supprimer">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Aïcha Soulé</td>
+                  <td>Bohicon</td>
+                  <td>Semaine soir</td>
+                  <td><span class="badge badge-blue">Tranche 2 payée</span></td>
+                  <td>
+                    <button class="btn-action btn-voir">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-action btn-supprimer">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PAGE VAGUES D'INSCRIPTION -->
+        <div class="page" id="page-vagues">
+          <div class="page-header">
+            <h1>Vagues d'inscription</h1>
+            <p>Gérez les périodes d'inscription</p>
+          </div>
+          <div class="section-card">
+            <h2>Créer une nouvelle vague</h2>
+            <div class="vague-form">
+              <div class="form-group">
+                <label>Date d'ouverture des inscriptions</label>
+                <input type="date" id="date-ouverture" class="admin-input" />
+              </div>
+              <div class="form-group">
+                <label>Date de clôture des inscriptions</label>
+                <input type="date" id="date-cloture" class="admin-input" />
+              </div>
+              <div class="form-group">
+                <label>Date de rentrée</label>
+                <input type="date" id="date-rentree" class="admin-input" />
+              </div>
+              <div class="form-group">
+                <label>Nom de la vague</label>
+                <input
+                  type="text"
+                  id="nom-vague"
+                  class="admin-input"
+                  placeholder="Ex: 5ème rentrée 2024"
+                />
+              </div>
+              <button class="btn-primary-admin" id="btn-creer-vague">
+                <i class="fas fa-plus"></i> Créer la vague
+              </button>
+            </div>
+          </div>
+          <div class="section-card">
+            <h2>Vagues existantes</h2>
+            <div class="vagues-liste">
+              <div class="vague-item active-vague">
+                <div class="vague-info">
+                  <h3>5ème rentrée 2023</h3>
+                  <p>Ouverture : 10 Juillet 2023 — Clôture : 07 Août 2023</p>
+                  <p>Rentrée : 09 Août 2023</p>
+                </div>
+                <span class="badge badge-green">Active</span>
+              </div>
+              <div class="vague-item">
+                <div class="vague-info">
+                  <h3>4ème rentrée 2023</h3>
+                  <p>Ouverture : 01 Avril 2023 — Clôture : 30 Avril 2023</p>
+                  <p>Rentrée : 02 Mai 2023</p>
+                </div>
+                <span class="badge badge-orange">Terminée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE CENTRES -->
+        <div class="page" id="page-centres">
+          <div class="page-header">
+            <h1>Centres</h1>
+            <p>Gérez les centres de formation</p>
+          </div>
+          <div class="centres-grid-admin">
+            <div class="centre-card-admin">
+              <i class="fas fa-location-dot"></i>
+              <h3>Calavi / UAC</h3>
+              <p>+229 62 03 18 92</p>
+              <p>+229 95 24 26 42</p>
+              <span class="badge badge-green">98 inscrits</span>
+            </div>
+            <div class="centre-card-admin">
+              <i class="fas fa-location-dot"></i>
+              <h3>Porto-Novo</h3>
+              <p>+229 67 58 02 93</p>
+              <p>+229 62 03 18 92</p>
+              <span class="badge badge-green">65 inscrits</span>
+            </div>
+            <div class="centre-card-admin">
+              <i class="fas fa-location-dot"></i>
+              <h3>Bohicon</h3>
+              <p>+229 62 03 18 92</p>
+              <span class="badge badge-green">42 inscrits</span>
+            </div>
+            <div class="centre-card-admin">
+              <i class="fas fa-location-dot"></i>
+              <h3>Lokossa</h3>
+              <p>+229 62 03 18 92</p>
+              <p>+229 91 32 65 44</p>
+              <span class="badge badge-green">28 inscrits</span>
+            </div>
+            <div class="centre-card-admin">
+              <i class="fas fa-location-dot"></i>
+              <h3>Parakou</h3>
+              <p>+229 62 03 18 92</p>
+              <span class="badge badge-green">14 inscrits</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE PAIEMENTS -->
+        <div class="page" id="page-paiements">
+          <div class="page-header">
+            <h1>Paiements</h1>
+            <p>Suivez les paiements des apprenants</p>
+          </div>
+          <div class="section-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Apprenant</th>
+                  <th>Centre</th>
+                  <th>Tranche 1 (15.000)</th>
+                  <th>Tranche 2 (20.000)</th>
+                  <th>Tranche 3 (26.000)</th>
+                  <th>Total payé</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bleossi De-vilpin</td>
+                  <td>Calavi</td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td><span class="badge badge-orange">En attente</span></td>
+                  <td><span class="badge badge-orange">En attente</span></td>
+                  <td>15.000 FCFA</td>
+                </tr>
+                <tr>
+                  <td>Koffi Mensah</td>
+                  <td>Porto-Novo</td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td><span class="badge badge-orange">En attente</span></td>
+                  <td>35.000 FCFA</td>
+                </tr>
+                <tr>
+                  <td>Aïcha Soulé</td>
+                  <td>Bohicon</td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td><span class="badge badge-green">✓ Payé</span></td>
+                  <td>61.000 FCFA</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+  </body>
+</html>
