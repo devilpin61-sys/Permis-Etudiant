@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Admin | Permis Étudiant+</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="css/admin.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
@@ -14,144 +13,257 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+      }
+      .logo-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .nav-item.active {
+        background-color: #ebf3ff;
+        color: #1a73e8;
+      }
+    </style>
   </head>
-  <body>
-    <div class="admin-container">
-      <!-- SIDEBAR ADMIN -->
-      <aside class="sidebar">
-        <div class="sidebar-top">
-          <div class="sidebar-logo">
-            <span class="logo-text"
-              >Permis<span class="logo-accent">Étudiant+</span></span
+  <body class="bg-gray-100 text-gray-800 h-screen overflow-hidden">
+    <!-- TOPBAR MOBILE -->
+    <div
+      class="md:hidden flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-50"
+    >
+      <div>
+        <span class="logo-font font-semibold text-blue-800 text-sm"
+          >Permis<span class="text-blue-500">Étudiant+</span></span
+        >
+        <span
+          class="ml-2 text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-medium"
+          >Admin</span
+        >
+      </div>
+      <button id="hamburger-btn" class="text-gray-500 text-base">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- OVERLAY -->
+    <div
+      id="sidebar-overlay"
+      class="hidden fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+    ></div>
+
+    <div class="flex h-screen overflow-hidden">
+      <!-- SIDEBAR -->
+      <aside
+        id="sidebar"
+        class="fixed top-0 left-0 h-full w-56 bg-white border-r border-gray-100 flex flex-col justify-between z-50 py-4 px-3 -translate-x-full md:translate-x-0 transition-transform duration-200"
+      >
+        <div>
+          <div class="mb-5 px-2 hidden md:block">
+            <span class="logo-font font-semibold text-blue-800 text-sm"
+              >Permis<span class="text-blue-500">Étudiant+</span></span
             >
-            <span class="admin-badge">Admin</span>
+            <div
+              class="mt-1 text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-medium w-fit"
+            >
+              Admin
+            </div>
           </div>
-          <nav class="sidebar-nav">
-            <a href="#" class="nav-item active" data-page="dashboard">
-              <i class="fas fa-gauge"></i>
+          <nav class="flex flex-col gap-0.5">
+            <a
+              href="#"
+              class="nav-item active flex items-center gap-2.5 px-3 py-2 rounded-lg text-blue-600 text-xs font-medium hover:bg-gray-50 transition-all"
+              data-page="dashboard"
+            >
+              <i class="fas fa-gauge w-3.5 text-center"></i>
               <span>Dashboard</span>
             </a>
-            <a href="#" class="nav-item" data-page="inscrits">
-              <i class="fas fa-users"></i>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-50 hover:text-blue-600 transition-all"
+              data-page="inscrits"
+            >
+              <i class="fas fa-users w-3.5 text-center"></i>
               <span>Inscrits</span>
             </a>
-            <a href="#" class="nav-item" data-page="vagues">
-              <i class="fas fa-calendar-plus"></i>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-50 hover:text-blue-600 transition-all"
+              data-page="vagues"
+            >
+              <i class="fas fa-calendar-plus w-3.5 text-center"></i>
               <span>Vagues d'inscription</span>
             </a>
-
-            <a href="#" class="nav-item" data-page="centres">
-              <i class="fas fa-location-dot"></i>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-50 hover:text-blue-600 transition-all"
+              data-page="centres"
+            >
+              <i class="fas fa-location-dot w-3.5 text-center"></i>
               <span>Centres</span>
             </a>
-            <a href="#" class="nav-item" data-page="paiements">
-              <i class="fas fa-money-bill-wave"></i>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 text-xs font-medium hover:bg-gray-50 hover:text-blue-600 transition-all"
+              data-page="paiements"
+            >
+              <i class="fas fa-money-bill-wave w-3.5 text-center"></i>
               <span>Paiements</span>
             </a>
           </nav>
         </div>
-        <div class="sidebar-bottom">
-          <a href="#" class="nav-item">
-            <div class="user-avatar">HA</div>
-            <span>Habib AHANDESSI</span>
-          </a>
-          <a href="login.html" class="nav-item deconnexion">
-            <i class="fas fa-right-from-bracket"></i>
+        <div class="border-t border-gray-100 pt-3 flex flex-col gap-0.5">
+          <div
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-600 text-xs"
+          >
+            <div
+              class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold logo-font flex-shrink-0"
+            >
+              HA
+            </div>
+            <span class="truncate">Habib AHANDESSI</span>
+          </div>
+          <a
+            href="login.html"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-red-400 text-xs font-medium hover:bg-red-50 transition-all"
+          >
+            <i class="fas fa-right-from-bracket w-3.5 text-center"></i>
             <span>Se déconnecter</span>
           </a>
         </div>
       </aside>
 
-      <!-- CONTENU PRINCIPAL -->
-      <main class="main-content">
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 md:ml-56 p-4 md:p-5 overflow-y-auto h-screen">
         <!-- PAGE DASHBOARD -->
         <div class="page active" id="page-dashboard">
-          <div class="page-header">
-            <h1>Tableau de bord</h1>
-            <p>Vue générale du projet Permis Étudiant+</p>
+          <div class="mb-4">
+            <h1 class="logo-font text-base font-semibold text-gray-900">
+              Tableau de bord
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Vue générale du projet Permis Étudiant+
+            </p>
           </div>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon"><i class="fas fa-users"></i></div>
-              <div class="stat-info">
-                <h3>Total inscrits</h3>
-                <span>247</span>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-2.5"
+            >
+              <div
+                class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 flex-shrink-0"
+              >
+                <i class="fas fa-users text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Total inscrits</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">247</p>
               </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-icon green">
-                <i class="fas fa-circle-check"></i>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-2.5"
+            >
+              <div
+                class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center text-green-500 flex-shrink-0"
+              >
+                <i class="fas fa-circle-check text-xs"></i>
               </div>
-              <div class="stat-info">
-                <h3>Paiements reçus</h3>
-                <span>189</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
-              <div class="stat-info">
-                <h3>En attente</h3>
-                <span>58</span>
+              <div>
+                <p class="text-xs text-gray-400">Paiements reçus</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">189</p>
               </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-icon purple">
-                <i class="fas fa-graduation-cap"></i>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-2.5"
+            >
+              <div
+                class="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500 flex-shrink-0"
+              >
+                <i class="fas fa-clock text-xs"></i>
               </div>
-              <div class="stat-info">
-                <h3>Diplômés</h3>
-                <span>124</span>
+              <div>
+                <p class="text-xs text-gray-400">En attente</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">58</p>
+              </div>
+            </div>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex items-center gap-2.5"
+            >
+              <div
+                class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center text-purple-500 flex-shrink-0"
+              >
+                <i class="fas fa-graduation-cap text-xs"></i>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Diplômés</p>
+                <p class="logo-font font-semibold text-gray-900 text-sm">124</p>
               </div>
             </div>
           </div>
 
-          <!-- INSCRITS PAR CENTRE -->
-          <div class="section-card">
-            <h2>Inscrits par centre</h2>
-            <div class="centres-stats">
-              <div class="centre-stat">
-                <div class="centre-stat-label">
-                  <span>Calavi / UAC</span>
-                  <span>98</span>
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <h2 class="logo-font font-semibold text-gray-800 text-xs mb-3">
+              Inscrits par centre
+            </h2>
+            <div class="flex flex-col gap-3">
+              <div>
+                <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Calavi / UAC</span><span>98</span>
                 </div>
-                <div class="progression-bar">
-                  <div class="progression-fill" style="width: 80%"></div>
-                </div>
-              </div>
-              <div class="centre-stat">
-                <div class="centre-stat-label">
-                  <span>Porto-Novo</span>
-                  <span>65</span>
-                </div>
-                <div class="progression-bar">
-                  <div class="progression-fill" style="width: 55%"></div>
+                <div class="bg-gray-100 rounded-full h-1.5">
+                  <div
+                    class="bg-blue-500 h-1.5 rounded-full"
+                    style="width: 80%"
+                  ></div>
                 </div>
               </div>
-              <div class="centre-stat">
-                <div class="centre-stat-label">
-                  <span>Bohicon</span>
-                  <span>42</span>
+              <div>
+                <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Porto-Novo</span><span>65</span>
                 </div>
-                <div class="progression-bar">
-                  <div class="progression-fill" style="width: 35%"></div>
-                </div>
-              </div>
-              <div class="centre-stat">
-                <div class="centre-stat-label">
-                  <span>Lokossa</span>
-                  <span>28</span>
-                </div>
-                <div class="progression-bar">
-                  <div class="progression-fill" style="width: 22%"></div>
+                <div class="bg-gray-100 rounded-full h-1.5">
+                  <div
+                    class="bg-blue-500 h-1.5 rounded-full"
+                    style="width: 55%"
+                  ></div>
                 </div>
               </div>
-              <div class="centre-stat">
-                <div class="centre-stat-label">
-                  <span>Parakou</span>
-                  <span>14</span>
+              <div>
+                <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Bohicon</span><span>42</span>
                 </div>
-                <div class="progression-bar">
-                  <div class="progression-fill" style="width: 12%"></div>
+                <div class="bg-gray-100 rounded-full h-1.5">
+                  <div
+                    class="bg-blue-500 h-1.5 rounded-full"
+                    style="width: 35%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Lokossa</span><span>28</span>
+                </div>
+                <div class="bg-gray-100 rounded-full h-1.5">
+                  <div
+                    class="bg-blue-500 h-1.5 rounded-full"
+                    style="width: 22%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs text-gray-600 mb-1">
+                  <span>Parakou</span><span>14</span>
+                </div>
+                <div class="bg-gray-100 rounded-full h-1.5">
+                  <div
+                    class="bg-blue-500 h-1.5 rounded-full"
+                    style="width: 12%"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -160,139 +272,235 @@
 
         <!-- PAGE INSCRITS -->
         <div class="page" id="page-inscrits">
-          <div class="page-header">
-            <h1>Inscrits</h1>
-            <p>Liste de tous les apprenants inscrits</p>
+          <div class="mb-4">
+            <h1 class="logo-font text-base font-semibold text-gray-900">
+              Inscrits
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Liste de tous les apprenants inscrits
+            </p>
           </div>
-          <div class="section-card">
-            <div class="table-header">
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <div class="flex gap-2 mb-3">
               <input
                 type="text"
-                placeholder="🔍 Rechercher un inscrit..."
-                class="search-input"
+                placeholder="Rechercher un inscrit..."
+                class="flex-1 text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
               />
-              <select class="filter-select">
+              <select
+                class="text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
+              >
                 <option value="">Tous les centres</option>
-                <option value="calavi">Calavi / UAC</option>
-                <option value="porto-novo">Porto-Novo</option>
-                <option value="bohicon">Bohicon</option>
-                <option value="lokossa">Lokossa</option>
-                <option value="parakou">Parakou</option>
+                <option>Calavi / UAC</option>
+                <option>Porto-Novo</option>
+                <option>Bohicon</option>
+                <option>Lokossa</option>
+                <option>Parakou</option>
               </select>
             </div>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Nom complet</th>
-                  <th>Centre</th>
-                  <th>Option</th>
-                  <th>Statut paiement</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Bleossi De-vilpin</td>
-                  <td>Calavi / UAC</td>
-                  <td>Semaine matin</td>
-                  <td>
-                    <span class="badge badge-green">Tranche 1 payée</span>
-                  </td>
-                  <td>
-                    <button class="btn-action btn-voir">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="btn-action btn-supprimer">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Koffi Mensah</td>
-                  <td>Porto-Novo</td>
-                  <td>Week-end</td>
-                  <td><span class="badge badge-orange">En attente</span></td>
-                  <td>
-                    <button class="btn-action btn-voir">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="btn-action btn-supprimer">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Aïcha Soulé</td>
-                  <td>Bohicon</td>
-                  <td>Semaine soir</td>
-                  <td><span class="badge badge-blue">Tranche 2 payée</span></td>
-                  <td>
-                    <button class="btn-action btn-voir">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="btn-action btn-supprimer">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-gray-100">
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Nom
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Téléphone
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Centre
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Option
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Paiement
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-50 hover:bg-gray-50">
+                    <td class="py-2 pr-4 text-xs text-gray-800">
+                      Bleossi De-vilpin
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">
+                      +229 62 03 18 92
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Calavi</td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Matin</td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full"
+                        >Tranche 1</span
+                      >
+                    </td>
+                    <td class="py-2">
+                      <div class="flex gap-1">
+                        <button
+                          class="w-6 h-6 bg-blue-50 text-blue-500 rounded-lg text-xs hover:bg-blue-500 hover:text-white transition-all"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button
+                          class="w-6 h-6 bg-red-50 text-red-400 rounded-lg text-xs hover:bg-red-500 hover:text-white transition-all"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-50 hover:bg-gray-50">
+                    <td class="py-2 pr-4 text-xs text-gray-800">
+                      Koffi Mensah
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">
+                      +229 95 24 26 42
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Porto-Novo</td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Week-end</td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full"
+                        >En attente</span
+                      >
+                    </td>
+                    <td class="py-2">
+                      <div class="flex gap-1">
+                        <button
+                          class="w-6 h-6 bg-blue-50 text-blue-500 rounded-lg text-xs hover:bg-blue-500 hover:text-white transition-all"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </button>
+                        <button
+                          class="w-6 h-6 bg-red-50 text-red-400 rounded-lg text-xs hover:bg-red-500 hover:text-white transition-all"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <!-- PAGE VAGUES D'INSCRIPTION -->
+        <!-- PAGE VAGUES -->
         <div class="page" id="page-vagues">
-          <div class="page-header">
-            <h1>Vagues d'inscription</h1>
-            <p>Gérez les périodes d'inscription</p>
+          <div class="mb-4">
+            <h1 class="logo-font text-base font-semibold text-gray-900">
+              Vagues d'inscription
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Gérez les périodes d'inscription
+            </p>
           </div>
-          <div class="section-card">
-            <h2>Créer une nouvelle vague</h2>
-            <div class="vague-form">
-              <div class="form-group">
-                <label>Date d'ouverture des inscriptions</label>
-                <input type="date" id="date-ouverture" class="admin-input" />
-              </div>
-              <div class="form-group">
-                <label>Date de clôture des inscriptions</label>
-                <input type="date" id="date-cloture" class="admin-input" />
-              </div>
-              <div class="form-group">
-                <label>Date de rentrée</label>
-                <input type="date" id="date-rentree" class="admin-input" />
-              </div>
-              <div class="form-group">
-                <label>Nom de la vague</label>
+          <div class="bg-white border border-gray-200 rounded-xl p-4 mb-4">
+            <h2 class="logo-font font-semibold text-gray-800 text-xs mb-3">
+              Créer une nouvelle vague
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-lg">
+              <div>
+                <label class="text-xs text-gray-500 mb-1 block"
+                  >Nom de la vague</label
+                >
                 <input
                   type="text"
                   id="nom-vague"
-                  class="admin-input"
-                  placeholder="Ex: 5ème rentrée 2024"
+                  placeholder="Ex: 6ème rentrée 2024"
+                  class="w-full text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
                 />
               </div>
-              <button class="btn-primary-admin" id="btn-creer-vague">
-                <i class="fas fa-plus"></i> Créer la vague
-              </button>
-            </div>
-          </div>
-          <div class="section-card">
-            <h2>Vagues existantes</h2>
-            <div class="vagues-liste">
-              <div class="vague-item active-vague">
-                <div class="vague-info">
-                  <h3>5ème rentrée 2023</h3>
-                  <p>Ouverture : 10 Juillet 2023 — Clôture : 07 Août 2023</p>
-                  <p>Rentrée : 09 Août 2023</p>
-                </div>
-                <span class="badge badge-green">Active</span>
+              <div>
+                <label class="text-xs text-gray-500 mb-1 block"
+                  >Date d'ouverture</label
+                >
+                <input
+                  type="date"
+                  id="date-ouverture"
+                  class="w-full text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
+                />
               </div>
-              <div class="vague-item">
-                <div class="vague-info">
-                  <h3>4ème rentrée 2023</h3>
-                  <p>Ouverture : 01 Avril 2023 — Clôture : 30 Avril 2023</p>
-                  <p>Rentrée : 02 Mai 2023</p>
+              <div>
+                <label class="text-xs text-gray-500 mb-1 block"
+                  >Date de clôture</label
+                >
+                <input
+                  type="date"
+                  id="date-cloture"
+                  class="w-full text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
+                />
+              </div>
+              <div>
+                <label class="text-xs text-gray-500 mb-1 block"
+                  >Date de rentrée</label
+                >
+                <input
+                  type="date"
+                  id="date-rentree"
+                  class="w-full text-xs border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-blue-400"
+                />
+              </div>
+            </div>
+            <button
+              id="btn-creer-vague"
+              class="mt-3 text-xs bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all flex items-center gap-2"
+            >
+              <i class="fas fa-plus"></i> Créer la vague
+            </button>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <h2 class="logo-font font-semibold text-gray-800 text-xs mb-3">
+              Vagues existantes
+            </h2>
+            <div class="flex flex-col gap-2">
+              <div
+                class="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200"
+              >
+                <div>
+                  <p class="text-xs font-medium text-gray-900">
+                    5ème rentrée 2023
+                  </p>
+                  <p class="text-xs text-gray-400 mt-0.5">
+                    10 Juil — 07 Août 2023 · Rentrée : 09 Août
+                  </p>
                 </div>
-                <span class="badge badge-orange">Terminée</span>
+                <span
+                  class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full"
+                  >Active</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between p-3 rounded-lg bg-gray-50 border border-gray-200"
+              >
+                <div>
+                  <p class="text-xs font-medium text-gray-900">
+                    4ème rentrée 2023
+                  </p>
+                  <p class="text-xs text-gray-400 mt-0.5">
+                    01 Avr — 30 Avr 2023 · Rentrée : 02 Mai
+                  </p>
+                </div>
+                <span
+                  class="text-xs bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full"
+                  >Terminée</span
+                >
               </div>
             </div>
           </div>
@@ -300,92 +508,177 @@
 
         <!-- PAGE CENTRES -->
         <div class="page" id="page-centres">
-          <div class="page-header">
-            <h1>Centres</h1>
-            <p>Gérez les centres de formation</p>
+          <div class="mb-4">
+            <h1 class="logo-font text-base font-semibold text-gray-900">
+              Centres
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Gérez les centres de formation
+            </p>
           </div>
-          <div class="centres-grid-admin">
-            <div class="centre-card-admin">
-              <i class="fas fa-location-dot"></i>
-              <h3>Calavi / UAC</h3>
-              <p>+229 62 03 18 92</p>
-              <p>+229 95 24 26 42</p>
-              <span class="badge badge-green">98 inscrits</span>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-1.5"
+            >
+              <i class="fas fa-location-dot text-blue-500 text-sm"></i>
+              <p class="text-xs font-medium text-gray-900">Calavi / UAC</p>
+              <p class="text-xs text-gray-400">+229 62 03 18 92</p>
+              <p class="text-xs text-gray-400">+229 95 24 26 42</p>
+              <span
+                class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full w-fit"
+                >98 inscrits</span
+              >
             </div>
-            <div class="centre-card-admin">
-              <i class="fas fa-location-dot"></i>
-              <h3>Porto-Novo</h3>
-              <p>+229 67 58 02 93</p>
-              <p>+229 62 03 18 92</p>
-              <span class="badge badge-green">65 inscrits</span>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-1.5"
+            >
+              <i class="fas fa-location-dot text-blue-500 text-sm"></i>
+              <p class="text-xs font-medium text-gray-900">Porto-Novo</p>
+              <p class="text-xs text-gray-400">+229 67 58 02 93</p>
+              <p class="text-xs text-gray-400">+229 62 03 18 92</p>
+              <span
+                class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full w-fit"
+                >65 inscrits</span
+              >
             </div>
-            <div class="centre-card-admin">
-              <i class="fas fa-location-dot"></i>
-              <h3>Bohicon</h3>
-              <p>+229 62 03 18 92</p>
-              <span class="badge badge-green">42 inscrits</span>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-1.5"
+            >
+              <i class="fas fa-location-dot text-blue-500 text-sm"></i>
+              <p class="text-xs font-medium text-gray-900">Bohicon</p>
+              <p class="text-xs text-gray-400">+229 62 03 18 92</p>
+              <span
+                class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full w-fit"
+                >42 inscrits</span
+              >
             </div>
-            <div class="centre-card-admin">
-              <i class="fas fa-location-dot"></i>
-              <h3>Lokossa</h3>
-              <p>+229 62 03 18 92</p>
-              <p>+229 91 32 65 44</p>
-              <span class="badge badge-green">28 inscrits</span>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-1.5"
+            >
+              <i class="fas fa-location-dot text-blue-500 text-sm"></i>
+              <p class="text-xs font-medium text-gray-900">Lokossa</p>
+              <p class="text-xs text-gray-400">+229 62 03 18 92</p>
+              <p class="text-xs text-gray-400">+229 91 32 65 44</p>
+              <span
+                class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full w-fit"
+                >28 inscrits</span
+              >
             </div>
-            <div class="centre-card-admin">
-              <i class="fas fa-location-dot"></i>
-              <h3>Parakou</h3>
-              <p>+229 62 03 18 92</p>
-              <span class="badge badge-green">14 inscrits</span>
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-1.5"
+            >
+              <i class="fas fa-location-dot text-blue-500 text-sm"></i>
+              <p class="text-xs font-medium text-gray-900">Parakou</p>
+              <p class="text-xs text-gray-400">+229 62 03 18 92</p>
+              <span
+                class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full w-fit"
+                >14 inscrits</span
+              >
             </div>
           </div>
         </div>
 
         <!-- PAGE PAIEMENTS -->
         <div class="page" id="page-paiements">
-          <div class="page-header">
-            <h1>Paiements</h1>
-            <p>Suivez les paiements des apprenants</p>
+          <div class="mb-4">
+            <h1 class="logo-font text-base font-semibold text-gray-900">
+              Paiements
+            </h1>
+            <p class="text-gray-400 text-xs mt-0.5">
+              Suivez les paiements des apprenants
+            </p>
           </div>
-          <div class="section-card">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Apprenant</th>
-                  <th>Centre</th>
-                  <th>Tranche 1 (15.000)</th>
-                  <th>Tranche 2 (20.000)</th>
-                  <th>Tranche 3 (26.000)</th>
-                  <th>Total payé</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Bleossi De-vilpin</td>
-                  <td>Calavi</td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td><span class="badge badge-orange">En attente</span></td>
-                  <td><span class="badge badge-orange">En attente</span></td>
-                  <td>15.000 FCFA</td>
-                </tr>
-                <tr>
-                  <td>Koffi Mensah</td>
-                  <td>Porto-Novo</td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td><span class="badge badge-orange">En attente</span></td>
-                  <td>35.000 FCFA</td>
-                </tr>
-                <tr>
-                  <td>Aïcha Soulé</td>
-                  <td>Bohicon</td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td><span class="badge badge-green">✓ Payé</span></td>
-                  <td>61.000 FCFA</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-gray-100">
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Apprenant
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      Centre
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      T1 (15k)
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      T2 (20k)
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2 pr-4"
+                    >
+                      T3 (26k)
+                    </th>
+                    <th
+                      class="text-left text-xs text-gray-400 font-medium pb-2"
+                    >
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-50 hover:bg-gray-50">
+                    <td class="py-2 pr-4 text-xs text-gray-800">
+                      Bleossi De-vilpin
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Calavi</td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full"
+                        >Payé</span
+                      >
+                    </td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full"
+                        >Attente</span
+                      >
+                    </td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full"
+                        >Attente</span
+                      >
+                    </td>
+                    <td class="py-2 text-xs text-gray-700">15.000 F</td>
+                  </tr>
+                  <tr class="border-b border-gray-50 hover:bg-gray-50">
+                    <td class="py-2 pr-4 text-xs text-gray-800">
+                      Koffi Mensah
+                    </td>
+                    <td class="py-2 pr-4 text-xs text-gray-500">Porto-Novo</td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full"
+                        >Payé</span
+                      >
+                    </td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full"
+                        >Payé</span
+                      >
+                    </td>
+                    <td class="py-2 pr-4">
+                      <span
+                        class="text-xs bg-orange-50 text-orange-500 px-2 py-0.5 rounded-full"
+                        >Attente</span
+                      >
+                    </td>
+                    <td class="py-2 text-xs text-gray-700">35.000 F</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>
