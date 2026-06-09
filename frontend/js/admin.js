@@ -1,3 +1,20 @@
+// ===== HAMBURGER MOBILE =====
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("-translate-x-full");
+    sidebarOverlay.classList.toggle("hidden");
+  });
+
+  sidebarOverlay.addEventListener("click", () => {
+    sidebar.classList.add("-translate-x-full");
+    sidebarOverlay.classList.add("hidden");
+  });
+}
+
 // ===== NAVIGATION SIDEBAR =====
 const navItems = document.querySelectorAll(".nav-item[data-page]");
 const pages = document.querySelectorAll(".page");
@@ -6,14 +23,16 @@ navItems.forEach((item) => {
   item.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Retirer active de tous
     navItems.forEach((i) => i.classList.remove("active"));
     pages.forEach((p) => p.classList.remove("active"));
 
-    // Activer le bon
     item.classList.add("active");
     const page = item.getAttribute("data-page");
     document.getElementById(`page-${page}`).classList.add("active");
+
+    // Fermer sidebar sur mobile
+    sidebar.classList.add("-translate-x-full");
+    sidebarOverlay.classList.add("hidden");
   });
 });
 
@@ -32,18 +51,7 @@ if (btnCreerVague) {
       return;
     }
 
-    if (new Date(cloture) <= new Date(ouverture)) {
-      alert("La date de clôture doit être après la date d'ouverture.");
-      return;
-    }
-
-    if (new Date(rentree) <= new Date(cloture)) {
-      alert("La date de rentrée doit être après la date de clôture.");
-      return;
-    }
-
-    // Pour l'instant on simule — le backend viendra après
-    alert(`Vague "${nom}" créée avec succès ! Le backend va sauvegarder ça.`);
+    alert(`Vague "${nom}" créée avec succès !`);
   });
 }
 
@@ -53,30 +61,11 @@ const searchInput = document.querySelector(".search-input");
 if (searchInput) {
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
-    const rows = document.querySelectorAll(".data-table tbody tr");
-
+    const rows = document.querySelectorAll("tbody tr");
     rows.forEach((row) => {
-      const text = row.textContent.toLowerCase();
-      row.style.display = text.includes(query) ? "" : "none";
-    });
-  });
-}
-
-// ===== FILTRE PAR CENTRE =====
-const filterSelect = document.querySelector(".filter-select");
-
-if (filterSelect) {
-  filterSelect.addEventListener("change", () => {
-    const value = filterSelect.value.toLowerCase();
-    const rows = document.querySelectorAll(".data-table tbody tr");
-
-    rows.forEach((row) => {
-      if (!value) {
-        row.style.display = "";
-      } else {
-        const centre = row.cells[3].textContent.toLowerCase();
-        row.style.display = centre.includes(value) ? "" : "none";
-      }
+      row.style.display = row.textContent.toLowerCase().includes(query)
+        ? ""
+        : "none";
     });
   });
 }
